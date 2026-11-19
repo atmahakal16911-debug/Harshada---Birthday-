@@ -135,9 +135,19 @@ const rg=document.getElementById('reasonsGrid');reasons.forEach((r,i)=>{let d=do
 document.getElementById('openSurprise').onclick=()=>{document.getElementById('memories').scrollIntoView({behavior:'smooth'});confetti()};
 function confetti(){const symbols=['💗','✨','🌸','💕','🎀'];for(let i=0;i<35;i++){let s=document.createElement('span');s.className='confetti';s.textContent=symbols[Math.floor(Math.random()*symbols.length)];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),4500)}}
 document.getElementById('wishBtn').onclick=()=>{confetti();alert('Happy 21st Birthday, Harshada! Keep shining, Michu! 💗')};
-const audio=document.getElementById('audio'),musicBtn=document.getElementById('musicBtn');
-document.getElementById('musicInput').addEventListener('change',e=>{const f=e.target.files[0];if(f){audio.src=URL.createObjectURL(f);audio.play().then(()=>{musicBtn.textContent='Ⅱ';musicBtn.classList.add('playing')}).catch(()=>{});}});
-musicBtn.onclick=()=>{if(!audio.src){document.getElementById('musicInput').click();return}if(audio.paused){audio.play();musicBtn.textContent='Ⅱ';musicBtn.classList.add('playing')}else{audio.pause();musicBtn.textContent='♫';musicBtn.classList.remove('playing')}};
+musicBtn.addEventListener('click', async () => {
+  try {
+    if (audio.paused) {
+      await audio.play();
+      musicBtn.textContent = '♫ Playing';
+    } else {
+      audio.pause();
+      musicBtn.textContent = '♫';
+    }
+  } catch (error) {
+    alert('Music could not play. Please check the MP3 file.');
+  }
+});
 document.getElementById('closeModal').onclick=()=>document.getElementById('modal').classList.remove('show');
 document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('show')};
 </script> 
