@@ -124,6 +124,7 @@ photoFiles.forEach((photo,i) => {
 });
 
 // Public-site music file: place birthday-song.mp3 beside index.html.
+ audio.src='birthday-song.mp3';
 document.getElementById('photoInput').addEventListener('change',e=>{
  const files=[...e.target.files].filter(f=>f.type.startsWith('image/')).slice(0,30);
  if(!files.length)return;gallery.innerHTML='';
