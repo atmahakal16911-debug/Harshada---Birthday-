@@ -112,7 +112,17 @@ function makeCard(src,index){
  else{img.src='data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340"><rect width="300" height="340" fill="#ffe8f0"/><text x="150" y="155" text-anchor="middle" font-size="54" fill="#d88aa8">♡</text><text x="150" y="205" text-anchor="middle" font-size="17" fill="#b87892">Your photo goes here</text></svg>`)}
  const cap=document.createElement('div');cap.className='caption';cap.textContent=captions[index%captions.length]||'A sweet memory ♡';card.append(img,cap);return card;
 }
-for(let i=0;i<20;i++){const n=i+1;gallery.appendChild(makeCard(`images/photo${n}.jpg`,i));}
+const photoFiles = [
+"photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg",
+"photo5.png","photo6.jpg","photo7.jpg","photo8.jpg",
+"photo9.jpg","photo10.jpg","photo11.jpg","photo12.jpg",
+"photo13.jpg","photo14.jpg","photo15.jpg","photo16.jpg",
+"photo17.jpg","photo18.jpg","photo19.jpg","photo20.jpg"
+];
+photoFiles.forEach((photo,i) => {
+  gallery.appendChild(makeCard("images/" + photo,i));
+});
+
 // Public-site music file: place birthday-song.mp3 beside index.html.
 audio.src='birthday-song.mp3';
 document.getElementById('photoInput').addEventListener('change',e=>{
@@ -130,30 +140,6 @@ document.getElementById('musicInput').addEventListener('change',e=>{const f=e.ta
 musicBtn.onclick=()=>{if(!audio.src){document.getElementById('musicInput').click();return}if(audio.paused){audio.play();musicBtn.textContent='Ⅱ';musicBtn.classList.add('playing')}else{audio.pause();musicBtn.textContent='♫';musicBtn.classList.remove('playing')}};
 document.getElementById('closeModal').onclick=()=>document.getElementById('modal').classList.remove('show');
 document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('show')};
-</script>
+</script> 
+
 </body></html>
-<script>
-const gallery = document.getElementById("gallery");
-
-const photos = [
-  "photo1.jpg", "photo2.jpg", "photo3.jpg",
-  "photo4.jpg", "photo5.png", "photo6.jpg",
-  "photo7.jpg", "photo8.jpg", "photo9.jpg",
-  "photo10.jpg", "photo11.jpg", "photo12.jpg",
-  "photo13.jpg", "photo14.jpg", "photo15.jpg",
-  "photo16.jpg", "photo17.jpg", "photo18.jpg",
-  "photo19.jpg", "photo20.jpg"
-];
-
-photos.forEach((photo, index) => {
-  const img = document.createElement("img");
-  img.src = "images/" + photo;
-  img.alt = "Harshada memory " + (index + 1);
-  img.loading = "lazy";
-  img.style.width = "100%";
-  img.style.aspectRatio = "1 / 1";
-  img.style.objectFit = "cover";
-  img.style.borderRadius = "15px";
-  gallery.appendChild(img);
-});
-</script>
